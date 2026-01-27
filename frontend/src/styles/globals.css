@@ -1,0 +1,311 @@
+﻿@import "tailwindcss";
+
+/* CSS Variables for VIP Theme */
+:root {
+  /* Primary Gold Colors */
+  --color-primary: #D4AF37;
+  --color-primary-50: #F9F6EC;
+  --color-primary-100: #F3EDD9;
+  --color-primary-200: #E8DBB3;
+  --color-primary-300: #DCC98D;
+  --color-primary-400: #D0B767;
+  --color-primary-500: #D4AF37;
+  --color-primary-600: #B89520;
+  --color-primary-700: #8B7018;
+  --color-primary-800: #5E4B10;
+  --color-primary-900: #312608;
+  
+  /* Secondary Dark Colors */
+  --color-secondary: #1a1a1a;
+  --color-secondary-50: #f5f5f5;
+  --color-secondary-100: #e5e5e5;
+  --color-secondary-200: #cccccc;
+  --color-secondary-300: #b3b3b3;
+  --color-secondary-400: #808080;
+  --color-secondary-500: #666666;
+  --color-secondary-600: #4d4d4d;
+  --color-secondary-700: #333333;
+  --color-secondary-800: #1a1a1a;
+  --color-secondary-900: #0d0d0d;
+  
+  /* Accent Colors */
+  --color-accent: #ffffff;
+  --color-accent-muted: #f8f8f8;
+}
+
+/* Custom Base Styles */
+* {
+  border-color: rgb(229, 231, 235);
+}
+
+body {
+  background-color: white;
+  color: var(--color-secondary-800);
+  font-family: 'Inter', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  margin: 0;
+  min-height: 100vh;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Playfair Display', serif;
+}
+
+h1 {
+  font-size: 2.25rem;
+  font-weight: 700;
+}
+
+h2 {
+  font-size: 1.875rem;
+  font-weight: 700;
+}
+
+h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+@media (min-width: 768px) {
+  h1 {
+    font-size: 3rem;
+  }
+  
+  h2 {
+    font-size: 2.25rem;
+  }
+  
+  h3 {
+    font-size: 1.875rem;
+  }
+}
+
+/* Custom Component Styles */
+.btn-primary {
+  background-color: var(--color-primary);
+  color: white;
+  font-weight: 600;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  transition: all 0.3s;
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+  border: none;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  background-color: var(--color-primary-600);
+  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+}
+
+.btn-secondary {
+  background-color: var(--color-secondary-800);
+  color: white;
+  font-weight: 600;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  transition: all 0.3s;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-secondary:hover {
+  background-color: var(--color-secondary-700);
+}
+
+.btn-outline {
+  border: 2px solid var(--color-primary);
+  color: var(--color-primary);
+  background-color: transparent;
+  font-weight: 600;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+
+.btn-outline:hover {
+  background-color: var(--color-primary);
+  color: white;
+}
+
+/* VIP Card Styles */
+.vip-card {
+  background-color: white;
+  border-radius: 0.75rem;
+  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+  border: 1px solid rgb(229, 231, 235);
+  overflow: hidden;
+  transition: all 0.3s;
+}
+
+.vip-card:hover {
+  box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1);
+}
+
+.vip-card-header {
+  background: linear-gradient(to right, var(--color-primary), var(--color-primary-600));
+  color: white;
+  padding: 1rem;
+}
+
+/* Input Styles */
+.input-field {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid rgb(209, 213, 219);
+  border-radius: 0.5rem;
+  outline: none;
+  transition: all 0.2s;
+}
+
+.input-field:focus {
+  box-shadow: 0 0 0 2px var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+.input-label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--color-secondary-700);
+  margin-bottom: 0.5rem;
+}
+
+/* Container */
+.container-custom {
+  max-width: 80rem;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+@media (min-width: 640px) {
+  .container-custom {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container-custom {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+/* Gold Gradient Text */
+.text-gradient-gold {
+  background: linear-gradient(to right, var(--color-primary-400), var(--color-primary), var(--color-primary-600));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* VIP Badge */
+.vip-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  background-color: var(--color-primary);
+  color: white;
+}
+
+/* Blurred Content */
+.blur-content {
+  filter: blur(0.75rem);
+  pointer-events: none;
+  user-select: none;
+}
+
+/* Loading Spinner */
+.spinner {
+  display: inline-block;
+  width: 2rem;
+  height: 2rem;
+  border: 4px solid rgb(229, 231, 235);
+  border-top-color: var(--color-primary);
+  border-radius: 9999px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Custom Utilities */
+.border-gradient-gold {
+  border-image: linear-gradient(to right, #D4AF37, #B89520) 1;
+}
+
+.smooth-scroll {
+  scroll-behavior: smooth;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Animations */
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+.animate-shimmer {
+  animation: shimmer 2s infinite;
+  background: linear-gradient(to right, #f6f7f8 0%, #edeef1 20%, #f6f7f8 40%, #f6f7f8 100%);
+  background-size: 1000px 100%;
+}
+
+/* Ticket unlock animation */
+@keyframes unlock {
+  0% {
+    filter: blur(10px);
+    opacity: 0;
+  }
+  100% {
+    filter: blur(0);
+    opacity: 1;
+  }
+}
+
+.animate-unlock {
+  animation: unlock 0.8s ease-out forwards;
+}
+
+/* Gold shine effect */
+@keyframes gold-shine {
+  0% {
+    background-position: -100%;
+  }
+  100% {
+    background-position: 200%;
+  }
+}
+
+.gold-shine {
+  background: linear-gradient(90deg, 
+    #D4AF37 0%, 
+    #FFD700 50%, 
+    #D4AF37 100%
+  );
+  background-size: 200% 100%;
+  animation: gold-shine 3s ease-in-out infinite;
+}
