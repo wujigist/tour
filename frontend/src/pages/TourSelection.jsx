@@ -144,18 +144,18 @@ const TourSelection = () => {
         </div>
 
         {/* Registration Code Display Banner */}
-        <div className="bg-gradient-to-r from-primary-600 to-primary-700 text-white p-6 rounded-xl shadow-lg mb-8">
-          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+        <div className="bg-gradient-to-r from-yellow-500 via-yellow-600 to-amber-600 text-white p-6 rounded-xl shadow-lg mb-8">
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
             <div>
-              <h3 className="font-bold text-lg mb-1">Your Registration Code</h3>
-              <p className="text-primary-100 text-sm">Keep this safe - you'll need it to login</p>
+            <h3 className="font-bold text-lg mb-1">Your Registration Code</h3>
+            <p className="text-yellow-100 text-sm">Keep this safe - you'll need it to login</p>
             </div>
-            <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg px-6 py-3">
-              <p className="text-3xl font-mono font-bold tracking-wider">
+            <div className="bg-white/20 backdrop-blur-sm border border-white/30 rounded-lg px-6 py-3">
+            <p className="text-3xl font-mono font-bold tracking-wider">
                 {fan.registration_code}
-              </p>
+            </p>
             </div>
-          </div>
+        </div>
         </div>
 
         {/* Info Banner */}
