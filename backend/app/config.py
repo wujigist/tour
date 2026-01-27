@@ -12,7 +12,7 @@ class Settings(BaseSettings):
     """Application settings loaded from environment variables"""
     
     # Database
-    DATABASE_URL: str = "postgresql://postgres:olibram95@localhost:5432/vip_tickets"
+    DATABASE_URL: str
     
     # Security
     SECRET_KEY: str

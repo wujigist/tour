@@ -19,12 +19,17 @@ if settings.DATABASE_URL.startswith("sqlite"):
         echo=settings.DEBUG
     )
 else:
+    # PostgreSQL connection
     engine = create_engine(
         settings.DATABASE_URL,
         pool_pre_ping=True,  # Verify connections before using
-        pool_size=10,
-        max_overflow=20,
-        echo=settings.DEBUG
+        pool_size=5,  # Reduced for free tier
+        max_overflow=10,  # Reduced for free tier
+        echo=settings.DEBUG,
+        connect_args={
+            "connect_timeout": 10,
+            "options": "-c timezone=utc"
+        }
     )
 
 # Create SessionLocal class
