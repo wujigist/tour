@@ -23,19 +23,19 @@ const TourSelection = () => {
   const [showSuccess, setShowSuccess] = useState(false);
   const [showError, setShowError] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
+  const [filterDate, setFilterDate] = useState('all'); // Filter state
   
   // Track if selections have been loaded to prevent duplicate calls
   const selectionsLoadedRef = useRef(false);
 
-  // Load existing selections - FIXED: Only depends on fan.id
+  // Load existing selections
   useEffect(() => {
     if (fan?.id && !selectionsLoadedRef.current) {
       loadSelections();
     }
-  }, [fan?.id]); // Changed from [fan] to [fan?.id]
+  }, [fan?.id]);
 
   const loadSelections = async () => {
-    // Prevent concurrent calls
     if (isLoadingSelections) return;
     
     setIsLoadingSelections(true);
@@ -46,7 +46,6 @@ const TourSelection = () => {
       selectionsLoadedRef.current = true;
     } catch (error) {
       console.error('Error loading selections:', error);
-      // Don't show error modal for initial load, just log it
     } finally {
       setIsLoadingSelections(false);
     }
@@ -72,7 +71,6 @@ const TourSelection = () => {
     setSubmitting(true);
 
     try {
-      // Submit all selections
       const response = await fansAPI.addBulkSelections(fan.id, selectedTourIds);
       setAllSelections(response);
       setShowSuccess(true);
@@ -91,6 +89,41 @@ const TourSelection = () => {
     navigate('/preview');
   };
 
+  const handleClearAll = () => {
+    setSelectedTourIds([]);
+  };
+
+  // Filter tours by date
+  const getFilteredTours = () => {
+    if (!tours) return [];
+    
+    const now = new Date();
+    const oneMonth = new Date();
+    oneMonth.setMonth(oneMonth.getMonth() + 1);
+    const threeMonths = new Date();
+    threeMonths.setMonth(threeMonths.getMonth() + 3);
+    const sixMonths = new Date();
+    sixMonths.setMonth(sixMonths.getMonth() + 6);
+
+    return tours.filter((tour) => {
+      const tourDate = new Date(tour.date);
+      
+      switch (filterDate) {
+        case 'next-month':
+          return tourDate >= now && tourDate <= oneMonth;
+        case 'next-3-months':
+          return tourDate >= now && tourDate <= threeMonths;
+        case 'next-6-months':
+          return tourDate >= now && tourDate <= sixMonths;
+        case 'all':
+        default:
+          return true;
+      }
+    });
+  };
+
+  const filteredTours = getFilteredTours();
+
   // Redirect if not logged in
   if (!fan) {
     navigate('/');
@@ -98,8 +131,8 @@ const TourSelection = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 py-8">
-      <div className="container-custom">
+    <div className="min-h-screen bg-gray-50 pb-32">
+      <div className="container-custom py-8">
         {/* Header */}
         <div className="mb-8">
           <h1 className="text-4xl font-bold mb-2">
@@ -108,6 +141,21 @@ const TourSelection = () => {
           <p className="text-gray-600 text-lg">
             Choose up to 5 tours you'd like to attend
           </p>
+        </div>
+
+        {/* Registration Code Display Banner */}
+        <div className="bg-gradient-to-r from-primary-600 to-primary-700 text-white p-6 rounded-xl shadow-lg mb-8">
+          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+            <div>
+              <h3 className="font-bold text-lg mb-1">Your Registration Code</h3>
+              <p className="text-primary-100 text-sm">Keep this safe - you'll need it to login</p>
+            </div>
+            <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg px-6 py-3">
+              <p className="text-3xl font-mono font-bold tracking-wider">
+                {fan.registration_code}
+              </p>
+            </div>
+          </div>
         </div>
 
         {/* Info Banner */}
@@ -135,9 +183,59 @@ const TourSelection = () => {
           </div>
         </div>
 
+        {/* Filter by Date */}
+        <div className="mb-6 flex flex-wrap items-center gap-4">
+          <label className="font-semibold text-gray-700">Filter by Date:</label>
+          <div className="flex flex-wrap gap-2">
+            <button
+              onClick={() => setFilterDate('all')}
+              className={`px-4 py-2 rounded-lg font-medium transition-colors ${
+                filterDate === 'all'
+                  ? 'bg-primary text-white'
+                  : 'bg-white text-gray-700 hover:bg-gray-100 border border-gray-300'
+              }`}
+            >
+              All Tours
+            </button>
+            <button
+              onClick={() => setFilterDate('next-month')}
+              className={`px-4 py-2 rounded-lg font-medium transition-colors ${
+                filterDate === 'next-month'
+                  ? 'bg-primary text-white'
+                  : 'bg-white text-gray-700 hover:bg-gray-100 border border-gray-300'
+              }`}
+            >
+              Next Month
+            </button>
+            <button
+              onClick={() => setFilterDate('next-3-months')}
+              className={`px-4 py-2 rounded-lg font-medium transition-colors ${
+                filterDate === 'next-3-months'
+                  ? 'bg-primary text-white'
+                  : 'bg-white text-gray-700 hover:bg-gray-100 border border-gray-300'
+              }`}
+            >
+              Next 3 Months
+            </button>
+            <button
+              onClick={() => setFilterDate('next-6-months')}
+              className={`px-4 py-2 rounded-lg font-medium transition-colors ${
+                filterDate === 'next-6-months'
+                  ? 'bg-primary text-white'
+                  : 'bg-white text-gray-700 hover:bg-gray-100 border border-gray-300'
+              }`}
+            >
+              Next 6 Months
+            </button>
+          </div>
+          <div className="ml-auto text-sm text-gray-600">
+            Showing {filteredTours.length} of {tours?.length || 0} tours
+          </div>
+        </div>
+
         {/* Tour List */}
         <TourList
-          tours={tours}
+          tours={filteredTours}
           selectedTourIds={selectedTourIds}
           onSelect={handleSelectTour}
           onDeselect={handleDeselectTour}
@@ -145,33 +243,6 @@ const TourSelection = () => {
           error={error}
           maxSelections={5}
         />
-
-        {/* Action Buttons */}
-        {tours.length > 0 && (
-          <div className="mt-8 flex gap-4 justify-center">
-            <Button
-              variant="outline"
-              onClick={() => setSelectedTourIds([])}
-              disabled={selectedTourIds.length === 0 || isLoadingSelections}
-            >
-              Clear All
-            </Button>
-
-            <Button
-              variant="primary"
-              onClick={handleSubmit}
-              loading={submitting}
-              disabled={submitting || selectedTourIds.length === 0 || isLoadingSelections}
-              size="lg"
-            >
-              {submitting
-                ? 'Saving...'
-                : `Continue with ${selectedTourIds.length} ${
-                    selectedTourIds.length === 1 ? 'Tour' : 'Tours'
-                  }`}
-            </Button>
-          </div>
-        )}
 
         {/* Help Text */}
         <div className="mt-8 text-center text-sm text-gray-600">
@@ -181,6 +252,59 @@ const TourSelection = () => {
               Contact Support
             </a>
           </p>
+        </div>
+      </div>
+
+      {/* STICKY BOTTOM BAR - Visible while scrolling */}
+      <div className="fixed bottom-0 left-0 right-0 bg-white border-t-2 border-gray-200 shadow-2xl z-50">
+        <div className="container-custom py-4">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+            {/* Selection Count */}
+            <div className="flex items-center gap-3">
+              <div className="bg-primary-100 rounded-full px-4 py-2">
+                <span className="text-primary font-bold text-lg">
+                  {selectedTourIds.length} / 5
+                </span>
+              </div>
+              <div className="text-sm">
+                <p className="font-semibold text-gray-900">
+                  {selectedTourIds.length === 0 && 'No tours selected'}
+                  {selectedTourIds.length === 1 && '1 tour selected'}
+                  {selectedTourIds.length > 1 && `${selectedTourIds.length} tours selected`}
+                </p>
+                <p className="text-gray-600">
+                  {selectedTourIds.length < 5
+                    ? `You can select ${5 - selectedTourIds.length} more`
+                    : 'Maximum reached'}
+                </p>
+              </div>
+            </div>
+
+            {/* Action Buttons */}
+            <div className="flex gap-3">
+              <Button
+                variant="outline"
+                onClick={handleClearAll}
+                disabled={selectedTourIds.length === 0 || isLoadingSelections || submitting}
+              >
+                Clear All
+              </Button>
+
+              <Button
+                variant="primary"
+                onClick={handleSubmit}
+                loading={submitting}
+                disabled={submitting || selectedTourIds.length === 0 || isLoadingSelections}
+                size="lg"
+              >
+                {submitting
+                  ? 'Saving...'
+                  : `Continue with ${selectedTourIds.length} ${
+                      selectedTourIds.length === 1 ? 'Tour' : 'Tours'
+                    }`}
+              </Button>
+            </div>
+          </div>
         </div>
       </div>
 

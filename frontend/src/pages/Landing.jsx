@@ -74,6 +74,7 @@ const Landing = () => {
       // Pass the fan object from the response, not the form data
       registerFan(response.fan);
       
+      // IMPORTANT: Show modal IMMEDIATELY after registration
       setShowSuccess(true);
     } catch (error) {
       setErrors({
@@ -86,6 +87,7 @@ const Landing = () => {
 
   const handleSuccessClose = () => {
     setShowSuccess(false);
+    // Navigate to tours page AFTER user closes the modal
     navigate('/tours');
   };
 
@@ -297,26 +299,41 @@ const Landing = () => {
         </div>
       </div>
 
-      {/* Success Modal */}
+      {/* Success Modal - DISPLAYS IMMEDIATELY AFTER REGISTRATION */}
       <SuccessModal
         isOpen={showSuccess}
         onClose={handleSuccessClose}
-        title="Registration Successful!"
+        title="🎉 Registration Successful!"
         message={
           <div className="text-center">
-            <p className="mb-4">Welcome to VIP Tickets!</p>
-            <div className="p-4 bg-gray-50 rounded-lg">
-              <p className="text-sm text-gray-600 mb-2">Your Registration Code:</p>
-              <p className="text-2xl font-mono font-bold text-primary">
+            <p className="mb-6 text-lg">Welcome to VIP Tickets!</p>
+            
+            <div className="p-6 bg-gradient-to-br from-primary-50 to-primary-100 rounded-xl border-2 border-primary mb-6">
+              <p className="text-sm text-gray-700 mb-3 font-semibold">Your Registration Code:</p>
+              <p className="text-3xl font-mono font-bold text-primary mb-3 tracking-wider">
                 {registrationCode}
               </p>
+              <div className="flex items-center justify-center gap-2 text-xs text-gray-600">
+                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd"></path>
+                </svg>
+                <span>Save this code - you'll need it to login later</span>
+              </div>
             </div>
-            <p className="text-sm text-gray-600 mt-4">
-              Save this code for your records. You can now select your tours!
+            
+            <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
+              <p className="text-sm text-blue-800 font-medium mb-2">📧 Check Your Email</p>
+              <p className="text-xs text-blue-700">
+                We've sent your registration code to <strong>{formData.email}</strong>
+              </p>
+            </div>
+
+            <p className="text-sm text-gray-600">
+              Click below to start selecting your VIP tours!
             </p>
           </div>
         }
-        buttonText="Select Tours"
+        buttonText="Select Tours →"
       />
     </div>
   );
