@@ -83,8 +83,25 @@ const ConsentPage = () => {
   };
 
   const handleTelegramClick = () => {
-    // Direct link to your Telegram
-    window.open('https://t.me/emily_pagno', '_blank');
+    // Construct the pre-filled message
+    const message = `Hello! 👋
+
+I would like to complete my VIP ticket payment.
+
+📝 Registration Code: ${fan.registration_code}
+👤 Name: ${fan.name}
+📧 Email: ${fan.email}
+💰 Amount: $${PAYMENT_FEE}
+
+Please provide payment instructions.
+
+Thank you!`;
+
+    // URL encode the message
+    const encodedMessage = encodeURIComponent(message);
+    
+    // Open Telegram with pre-filled message
+    window.open(`https://t.me/emily_pagno?text=${encodedMessage}`, '_blank');
   };
 
   // Redirect if not logged in
@@ -158,7 +175,8 @@ const ConsentPage = () => {
                   <h3 className="font-bold text-blue-900 mb-2">Payment Instructions</h3>
                   <ol className="text-sm text-blue-800 space-y-2 list-decimal list-inside">
                     <li>Click the button below to contact our admin via Telegram</li>
-                    <li>Provide your registration code: <strong className="font-mono bg-white px-2 py-1 rounded">{fan.registration_code}</strong></li>
+                    <li>Your payment details will be pre-filled in the message</li>
+                    <li>Send the message and follow the admin's payment instructions</li>
                     <li>Complete the ${PAYMENT_FEE} payment as instructed</li>
                     <li>Once verified, you'll be able to access the consent form</li>
                   </ol>
