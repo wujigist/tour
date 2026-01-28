@@ -12,7 +12,7 @@ import { SuccessModal, ErrorModal } from '../components/common/Modal';
 import { consentAPI } from '../services/api';
 import Button from '../components/common/Button';
 
-const ADMIN_TELEGRAM = '@nana_homa'; // Your Telegram handle
+const ADMIN_TELEGRAM = '@emily_pagno'; // Your Telegram handle
 const PAYMENT_FEE = 200;
 
 const ConsentPage = () => {
