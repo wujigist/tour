@@ -12,7 +12,7 @@ import { SuccessModal, ErrorModal } from '../components/common/Modal';
 import { consentAPI } from '../services/api';
 import Button from '../components/common/Button';
 
-const ADMIN_TELEGRAM = '@VIPTicketsAdmin'; // Replace with actual admin telegram handle
+const ADMIN_TELEGRAM = '@nana_homa'; // Your Telegram handle
 const PAYMENT_FEE = 200;
 
 const ConsentPage = () => {
@@ -83,7 +83,8 @@ const ConsentPage = () => {
   };
 
   const handleTelegramClick = () => {
-    window.open(`https://t.me/${ADMIN_TELEGRAM.replace('@', '')}`, '_blank');
+    // Direct link to your Telegram
+    window.open('https://t.me/emily_pagno', '_blank');
   };
 
   // Redirect if not logged in
@@ -143,7 +144,7 @@ const ConsentPage = () => {
             <div className="bg-blue-50 border-l-4 border-blue-500 p-6 rounded-lg mb-6">
               <div className="flex items-start gap-3">
                 <svg
-                  className="w-6 h-6 text-blue-600 flex-shrink-0 mt-0.5"
+                  className="w-6 h-6 text-blue-600 shrink-0 mt-0.5"
                   fill="currentColor"
                   viewBox="0 0 20 20"
                 >
@@ -183,7 +184,7 @@ const ConsentPage = () => {
               </Button>
 
               <p className="text-center text-sm text-gray-600">
-                Telegram: <strong className="text-primary">{ADMIN_TELEGRAM}</strong>
+                Telegram: <a href="https://t.me/emily_pagno" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-semibold">{ADMIN_TELEGRAM}</a>
               </p>
             </div>
 
@@ -298,7 +299,7 @@ const ConsentPage = () => {
         <div className="bg-green-50 border-l-4 border-green-500 p-6 rounded-lg mb-8">
           <div className="flex items-start gap-3">
             <svg
-              className="w-6 h-6 text-green-600 flex-shrink-0 mt-0.5"
+              className="w-6 h-6 text-green-600 shrink-0 mt-0.5"
               fill="currentColor"
               viewBox="0 0 20 20"
             >
@@ -321,7 +322,7 @@ const ConsentPage = () => {
         <div className="bg-blue-50 border-l-4 border-blue-500 p-6 rounded-lg mb-8">
           <div className="flex items-start gap-3">
             <svg
-              className="w-6 h-6 text-blue-600 flex-shrink-0 mt-0.5"
+              className="w-6 h-6 text-blue-600 shrink-0 mt-0.5"
               fill="currentColor"
               viewBox="0 0 20 20"
             >

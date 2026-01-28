@@ -144,7 +144,7 @@ const TourSelection = () => {
         </div>
 
         {/* Registration Code Display Banner */}
-        <div className="bg-gradient-to-r from-yellow-500 via-yellow-600 to-amber-600 text-white p-6 rounded-xl shadow-lg mb-8">
+        <div className="bg-linear-to-r from-yellow-500 via-yellow-600 to-amber-600 text-white p-6 rounded-xl shadow-lg mb-8">
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
             <div>
             <h3 className="font-bold text-lg mb-1">Your Registration Code</h3>
@@ -162,7 +162,7 @@ const TourSelection = () => {
         <div className="bg-primary-50 border-l-4 border-primary p-6 rounded-lg mb-8">
           <div className="flex items-start gap-3">
             <svg
-              className="w-6 h-6 text-primary flex-shrink-0 mt-0.5"
+              className="w-6 h-6 text-primary shrink-0 mt-0.5"
               fill="currentColor"
               viewBox="0 0 20 20"
             >

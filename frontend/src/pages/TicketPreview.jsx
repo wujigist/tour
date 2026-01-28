@@ -114,7 +114,7 @@ const TicketPreviewPage = () => {
         <div className="bg-amber-50 border-l-4 border-amber-500 p-6 rounded-lg mb-8">
           <div className="flex items-start gap-3">
             <svg
-              className="w-6 h-6 text-amber-600 flex-shrink-0 mt-0.5"
+              className="w-6 h-6 text-amber-600 shrink-0 mt-0.5"
               fill="currentColor"
               viewBox="0 0 20 20"
             >
@@ -160,7 +160,7 @@ const TicketPreviewPage = () => {
           <h3 className="text-xl font-bold mb-4">What's Next?</h3>
           <div className="space-y-3">
             <div className="flex items-start gap-3">
-              <div className="flex-shrink-0 w-6 h-6 bg-primary rounded-full flex items-center justify-center text-white text-sm font-bold">
+              <div className="shrink-0 w-6 h-6 bg-primary rounded-full flex items-center justify-center text-white text-sm font-bold">
                 1
               </div>
               <div>
@@ -172,7 +172,7 @@ const TicketPreviewPage = () => {
             </div>
 
             <div className="flex items-start gap-3">
-              <div className="flex-shrink-0 w-6 h-6 bg-primary rounded-full flex items-center justify-center text-white text-sm font-bold">
+              <div className="shrink-0 w-6 h-6 bg-primary rounded-full flex items-center justify-center text-white text-sm font-bold">
                 2
               </div>
               <div>
@@ -184,7 +184,7 @@ const TicketPreviewPage = () => {
             </div>
 
             <div className="flex items-start gap-3">
-              <div className="flex-shrink-0 w-6 h-6 bg-primary rounded-full flex items-center justify-center text-white text-sm font-bold">
+              <div className="shrink-0 w-6 h-6 bg-primary rounded-full flex items-center justify-center text-white text-sm font-bold">
                 3
               </div>
               <div>

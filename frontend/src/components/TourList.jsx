@@ -149,7 +149,7 @@ const TourList = ({
         <div className="mt-6 p-4 bg-amber-50 border border-amber-200 rounded-lg">
           <div className="flex gap-3">
             <svg
-              className="w-5 h-5 text-amber-600 flex-shrink-0 mt-0.5"
+              className="w-5 h-5 text-amber-600 shrink-0 mt-0.5"
               fill="currentColor"
               viewBox="0 0 20 20"
             >

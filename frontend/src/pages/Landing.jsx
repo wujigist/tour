@@ -98,7 +98,7 @@ const Landing = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-primary-50 via-white to-primary-50">
+    <div className="min-h-screen bg-linear-to-br from-primary-50 via-white to-primary-50">
       {/* Hero Section */}
       <div className="container-custom py-16">
         <div className="max-w-6xl mx-auto">
@@ -129,7 +129,7 @@ const Landing = () => {
                   'Easy digital download',
                 ].map((benefit, index) => (
                   <div key={index} className="flex items-center gap-3">
-                    <div className="flex-shrink-0 w-6 h-6 bg-primary rounded-full flex items-center justify-center">
+                    <div className="shrink-0 w-6 h-6 bg-primary rounded-full flex items-center justify-center">
                       <svg
                         className="w-4 h-4 text-white"
                         fill="currentColor"
@@ -308,7 +308,7 @@ const Landing = () => {
           <div className="text-center">
             <p className="mb-6 text-lg">Welcome to VIP Tickets!</p>
             
-            <div className="p-6 bg-gradient-to-br from-primary-50 to-primary-100 rounded-xl border-2 border-primary mb-6">
+            <div className="p-6 bg-linear-to-br from-primary-50 to-primary-100 rounded-xl border-2 border-primary mb-6">
               <p className="text-sm text-gray-700 mb-3 font-semibold">Your Registration Code:</p>
               <p className="text-3xl font-mono font-bold text-primary mb-3 tracking-wider">
                 {registrationCode}

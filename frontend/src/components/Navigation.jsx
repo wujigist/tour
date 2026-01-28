@@ -142,7 +142,7 @@ const Navigation = () => {
 
                 <Link
                   to="/selections"
-                  className="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-lg flex items-center justify-between"
+                  className="flex items-center justify-between px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-lg"
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   <span>My Selections</span>
